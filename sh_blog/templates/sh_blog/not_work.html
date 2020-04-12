@@ -1,0 +1,17 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% load sh_blog_extras %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'sh_blog/not_work.css' %}">
+{% endblock %}
+{% block content %}
+<div class="wrapper"></div>
+<h1>Увлечения</h1>
+{% for rubric in rubrics %}
+  <div class="{% cycle 'first' 'second' 'third'%}">
+    <a href="{% url 'sh_blog:by_rubric' rubric.id %}"><img src="{% static 'sh_blog/'|addstr:rubric.image %}" class="rubric_img"></a>
+    <p class="rubric">{{rubric.name}}</p>
+  </div>
+{% endfor %}
+</div> 
+{% endblock %}

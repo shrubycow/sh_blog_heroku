@@ -1,0 +1,8 @@
+Уважаемый, {{ user.username }}!
+
+Вы сделали запрос на сброс вашего пароля.
+Для сброса пароля пройдите по следующей ссылке:
+{{protocol}}://{{ domain }}{% url 'accounts:password_reset_confirm' uidb64=uid token=token %}
+
+До свидания!
+С уважением, администрация сайта sh_blog.

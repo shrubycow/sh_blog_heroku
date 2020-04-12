@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'sh_blog/header.css' %}">
+    {% block styles %}{% endblock %}
+    <title>{% block title %}Главная{% endblock %} - sh blog</title>
+</head>
+<body>
+  <div class="header">
+    <header>
+        <nav>
+          <ul>
+            <li><a href="{% url 'sh_blog:main' %}">Главная</a></li>
+            <li><a href="#">О работе</a> </li>
+            <li><a href="{% url 'sh_blog:not_work' %}">Не о работе</a></li>
+            <li><a href="#">О сайте</a></li>
+            {% if user.is_authenticated %}
+            <li class="auth"><a href="{% url 'accounts:profile' %}">{{ user.username }}</a> | <a href="{% url 'accounts:logout' %}">Выйти</a></li>
+            {% else %}
+            <li class="auth"><a href="{% url 'accounts:login' %}">Вход</a> | <a href="{% url 'accounts:django_registration_register' %}">Регистрация</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+    </header>
+  </div>
+    <section>
+      {% block content %}
+      {% endblock %}
+    </section>
+    </body>
+</html>

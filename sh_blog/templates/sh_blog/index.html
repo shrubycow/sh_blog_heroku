@@ -1,0 +1,38 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% load sh_blog_extras %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'sh_blog/content.css' %}">
+{% endblock %}
+{% block content %}
+<img class="img_after_header" src="{% static 'sh_blog/back1_label.jpg' %}">
+<h1>Последнее</h1>
+  <div class="big_elements">
+    {% for post in posts %}
+    <div class="text_content">
+      <h2><a href="{% url 'sh_blog:detail' post.slug %}">{{ post.title }}</a></h2>
+      <ul class="date_author">
+        <li class="date">{{ post.created }}</li>
+        <li class="author">{{ post.author }}</li>
+      </ul>
+      <img src="{{ post.image.url }}" class="post_image">
+      <p>{{ post.body|truncatewords:150|safe }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="small_elements">
+    <h2 class="schedule">Расписание на сегодня:</h2>
+    {% for lesson in schedule %}
+      <div class="lesson">
+        <table border="0">
+          <tr><td><b>{{lesson.startLessonTime|date:"H:i"}}</b></td><td><b>{{lesson.subject|addstr:" ("|addstr:lesson.lessonType|addstr:")"}}</b></td><td></td></tr>
+          <tr><td>{{lesson.endLessonTime|date:"H:i"}}</td><td>{{lesson.auditory}}</td><td class="teacher">{{lesson.employee}}</td></tr>
+          {% if lesson.note %}
+          <tr><td></td><td colspan="2"><i>{{lesson.note}}</i></td></tr>
+          {% endif %}
+        </table>
+      </div>
+      {% empty %}
+      <p>Сегодня пар нет.</p>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'accounts/profile.css' %}">
+{% endblock %}
+{% block content %}
+<div class="text_content">
+  <h1>Профиль {{user.username}}</h1>
+  <img src="{{ cur_profile.avatar.url }}" width="150" height="150" class="avatar">
+  <ul class="options">
+    <li>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.avatar.label_tag }}
+        <br>
+        {{ form.avatar }}
+        <input id="id_submit" type="submit" value="Сменить">
+      </form>
+    </li>
+    <li><a href="{% url 'accounts:reset' %}">Сменить пароль</a></li>
+  </ul>
+</div>  
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% block content %}
+<p>Активация не была проведена по следующим причинам:</p>
+{% for element in dict %}
+{{ element }}
+{% endfor %}
+{% endblock %}

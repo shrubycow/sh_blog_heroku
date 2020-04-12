@@ -1,0 +1,49 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'sh_blog/detail.css' %}">
+{% endblock %}
+{% block content %}
+<div class="text_content">
+<h1>{{ post.title }}</h1>
+    <ul class="date_author">
+      <li class="date">{{ post.created }}</li>
+      <li class="author">{{ post.author }}</li>
+    </ul>
+    <img src="{{ post.image.url }}" class="post_image">
+    <p>{{ post.body|safe }}</p>
+</div>
+<h2 class="comments_h">Комментарии</h2>
+{% for comment in comments %}
+<div class="text_content_comment">
+  <ul class="date_author">
+    <li class="date">{{ comment.publish }}</li>
+    <li class="author">{{ comment.profile.user.username }}</li>
+  </ul>
+    <img src="{{ comment.profile.avatar.url }}" width="100" height="100" class="avatar">
+    <p class="comment">{{ comment.body }}</p>
+</div>
+{% empty %}
+{% if user.is_authenticated %}
+<div class="text_content_comment">
+  <p class="comment">Пока здесь нет комментариев, вы можете быть первым!</p>
+</div>
+{% endif %}
+{% endfor %}
+{% if user.is_authenticated %}
+<div class="add_comment">
+<form method="post">
+  {% csrf_token %}
+  <h2>Добавить комментарий:</h2>
+  {{ form.body }}
+  <br>
+  <input type="submit" value="Добавить">
+</form>
+</div>
+{% else %}
+<br>
+<div class="text_content_comment">
+  <p><a href="{% url 'accounts:django_registration_register' %}">Зарегистрируйтесь</a>, или <a href="{% url 'accounts:login'%}">войдите</a>, чтобы оставлять комментарии</p>
+</div>
+{% endif %}
+{% endblock %}

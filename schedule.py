@@ -3,7 +3,7 @@ import requests
 from sh_blog.models import TodaySchedule
 from django.utils import timezone
 from time import sleep
-
+sleep(18600)
 while True:
     for lesson in TodaySchedule.objects.all(): #удаляет значения за предыдущий день
         lesson.delete()

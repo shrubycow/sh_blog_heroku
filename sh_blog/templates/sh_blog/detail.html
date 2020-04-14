@@ -3,6 +3,9 @@
 {% block styles %}
     <link rel="stylesheet" href="{% static 'sh_blog/detail.css' %}">
 {% endblock %}
+{% block title %}
+{{ post.title }}
+{% endblock %}
 {% block content %}
 <div class="text_content">
 <h1>{{ post.title }}</h1>

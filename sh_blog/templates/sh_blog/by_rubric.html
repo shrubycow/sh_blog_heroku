@@ -3,6 +3,9 @@
 {% block styles%}
 <link rel="stylesheet" href="{% static 'sh_blog/content.css' %}">
 {% endblock %}
+{{ rubric.name }}
+{% block title%}
+{% endblock %}
 {% block content %}
 <h1>{{rubric.name}}</h1>
   <div class="big_elements">

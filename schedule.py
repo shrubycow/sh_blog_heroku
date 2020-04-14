@@ -26,3 +26,4 @@ for numb, parameters in enumerate(schedule_json['todaySchedules'], 1):
 
 
 exit()
+

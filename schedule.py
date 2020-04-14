@@ -24,3 +24,5 @@ for numb, parameters in enumerate(schedule_json['todaySchedules'], 1):
     ts.employee = parameters['employee'][0]['lastName']+' '+parameters['employee'][0]['firstName'][0]+". "+parameters['employee'][0]['middleName'][0]+"."
     ts.save()
 
+
+exit()

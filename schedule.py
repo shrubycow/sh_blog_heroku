@@ -2,9 +2,6 @@ import json
 import requests
 from sh_blog.models import TodaySchedule
 from django.utils import timezone
-import django
-
-django.setup()
 
 for lesson in TodaySchedule.objects.all(): #удаляет значения за предыдущий день
     lesson.delete()

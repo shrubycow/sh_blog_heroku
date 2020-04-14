@@ -2,7 +2,9 @@ import json
 import requests
 from sh_blog.models import TodaySchedule
 from django.utils import timezone
-from time import sleep
+import django
+
+django.setup()
 
 for lesson in TodaySchedule.objects.all(): #удаляет значения за предыдущий день
     lesson.delete()
@@ -24,3 +26,4 @@ for numb, parameters in enumerate(schedule_json['todaySchedules'], 1):
     ts.note = parameters['note']
     ts.employee = parameters['employee'][0]['lastName']+' '+parameters['employee'][0]['firstName'][0]+". "+parameters['employee'][0]['middleName'][0]+"."
     ts.save()
+

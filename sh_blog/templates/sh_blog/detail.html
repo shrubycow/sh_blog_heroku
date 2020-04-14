@@ -19,12 +19,16 @@
 <h2 class="comments_h">Комментарии</h2>
 {% for comment in comments %}
 <div class="text_content_comment">
-  <ul class="date_author">
+  <ul class="date_author_com">
     <li class="date">{{ comment.publish }}</li>
     <li class="author">{{ comment.profile.user.username }}</li>
   </ul>
-    <img src="{{ comment.profile.avatar.url }}" width="100" height="100" class="avatar">
-    <p class="comment">{{ comment.body }}</p>
+  <div class="outer">
+      <div class="div_avatar">
+        <img src="{{ comment.profile.avatar.url }}" width="100" height="100" class="avatar">
+      </div>
+      <p class="comment">{{ comment.body }}</p>
+  </div>	
 </div>
 {% empty %}
 {% if user.is_authenticated %}

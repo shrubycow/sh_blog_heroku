@@ -34,7 +34,7 @@ p{
     margin-top: 5px;
     margin-bottom: 5px;
 }
-.date_author li {
+.date_author li, .date_author_com li {
     color: #7e6f6f;
     display: inline-block;
     margin-bottom: 0px;
@@ -52,9 +52,28 @@ h2{
 }
 
 /* comment */
-.avatar{
-    float: left;
+.date_author_com{
+    padding-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
+
+.outer{
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.div_avatar{
+    display: table-cell;
+    width: 100px;
+    height: 100%;
+}
+.avatar{
+    position: absolute;
+}
+
+
 .text_content_comment{
     margin: 20px 20% 20px 20%;
     overflow: hidden;
@@ -63,10 +82,12 @@ h2{
     padding-right: 10px;
     padding-bottom: 10px;
     border-radius: 15px;
+    min-height: 138px;
 }
 .comment{
     float: left;
 }
+
 .add_comment, .comments_h{
     margin-left: 20%;
     margin-right: 20%;
@@ -80,6 +101,7 @@ h2{
 }
 A:link { 
     text-decoration: none; /* Убирает подчеркивание для ссылок */
+    color: #3b4d61;
    }
 
 A, A:visited { 
@@ -87,9 +109,7 @@ A, A:visited {
     color: #3b4d61;
 } 
 
-A:active { text-decoration: none; }
-
-
-
-                                                                                                                
-
+A:active { 
+    text-decoration: none;
+    color: #3b4d61;
+ }

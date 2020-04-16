@@ -15,8 +15,10 @@
     <p>
       {{ field.label_tag }}
       <br>
-      {{ field }} {{ field.help_text }}
-      {% if field.auto_id == 'id_password1' %}
+      {{ field }} 
+      {% if field.auto_id != 'id_password1' %}
+        {{ field.help_text }}
+      {% else %}
       <ul class="pass_help">
         <li>Ваш пароль не должен содержать личные данные.</li>
         <li>Ваш пароль должен содержать как минимум 8 символов.</li>

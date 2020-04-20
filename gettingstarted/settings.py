@@ -119,6 +119,8 @@ USE_TZ = False
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = "/static/"
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -139,3 +141,4 @@ django_heroku.settings(locals())
 
 ADMINS = [('Alexandr', 'alexandriyskiy1@mail.ru')]
 
+STATICFILES_STORAGE = 'gettingstarted.storage.WhiteNoiseStaticFilesStorage'

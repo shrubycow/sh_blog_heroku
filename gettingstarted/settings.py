@@ -141,5 +141,5 @@ django_heroku.settings(locals())
 
 ADMINS = [('Alexandr', 'alexandriyskiy1@mail.ru')]
 
-# STATICFILES_STORAGE = 'gettingstarted.storage.WhiteNoiseStaticFilesStorage'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'gettingstarted.storage.WhiteNoiseStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

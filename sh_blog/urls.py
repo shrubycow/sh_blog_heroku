@@ -8,8 +8,9 @@ app_name = 'sh_blog'
 urlpatterns = [
     path('', index, name='main'),
     path('not-work/', not_about_work, name='not_work'),
-    path('<slug:slug>/', post_detail, name='detail'),
     path('not-work/<int:pk>/', by_rubric, name='by_rubric'),
+    path('about/', AboutSite.as_view(), name='about_site')
+    path('<slug:slug>/', post_detail, name='detail'),
 ]
 
 if settings.DEBUG:

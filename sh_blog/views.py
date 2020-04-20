@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.core.exceptions import PermissionDenied
+from django.views.generic.base import TemplateView
 from .models import Post, Rubric, TodaySchedule, Comment, UserProfile
 from precise_bbcode.bbcode import get_parser
 from .forms import CommentForm
@@ -55,3 +56,6 @@ def by_rubric(request, pk):
     posts = bb_parse(posts)
     rubric = Rubric.objects.get(id=pk)
     return render(request, 'sh_blog/by_rubric.html', {'posts': posts, 'rubric': rubric})
+
+
+    

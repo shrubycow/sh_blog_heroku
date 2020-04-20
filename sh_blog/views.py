@@ -48,7 +48,7 @@ def post_detail(request, slug):
 
 
 def not_about_work(request):
-    rubrics = Rubric.objects.filter()
+    rubrics = Rubric.objects.exclude(name='Сайт').exclude(name='Работа')
     return render(request, 'sh_blog/not_work.html', {'rubrics': rubrics})
 
 def by_rubric(request, pk):

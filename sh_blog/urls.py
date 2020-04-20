@@ -9,7 +9,7 @@ urlpatterns = [
     path('', index, name='main'),
     path('not-work/', not_about_work, name='not_work'),
     path('not-work/<int:pk>/', by_rubric, name='by_rubric'),
-    path('about/', AboutSite.as_view(), name='about_site')
+    path('about/', AboutSite.as_view(), name='about_site'),
     path('<slug:slug>/', post_detail, name='detail'),
 ]
 

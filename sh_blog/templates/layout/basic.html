@@ -13,9 +13,9 @@
         <nav>
           <ul>
             <li><a href="{% url 'sh_blog:main' %}">Главная</a></li>
-            <li><a href="{% url 'sh_blog:by_rubric' 7 %}">О работе</a> </li>
+            <li><a href="#">О работе</a> </li>
             <li><a href="{% url 'sh_blog:not_work' %}">Не о работе</a></li>
-            <li><a href="{% url 'sh_blog:by_rubric' 6 %}">О сайте</a></li>
+            <li><a href="#">О сайте</a></li>
             {% if user.is_authenticated %}
             <li class="auth"><a href="{% url 'accounts:profile' %}">{{ user.username }}</a> | <a href="{% url 'accounts:logout' %}">Выйти</a></li>
             {% else %}

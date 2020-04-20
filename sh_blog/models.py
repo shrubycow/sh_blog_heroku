@@ -38,7 +38,7 @@ class Post(models.Model):
 class Rubric(models.Model):
 
     name = models.CharField(max_length=250)
-    image = models.CharField(max_length=250, blank=True, null=True)
+    image = models.CharField(max_length=250, null=True)
 
     class Meta:
         verbose_name = "Рубрика"

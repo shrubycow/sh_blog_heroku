@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', '@fskqtzprvgfajstqbzxgutqjs!nf24hsa11k7s90shf2bsaqpr4nzfauwestv@@!74k')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'FALSE'
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost:5000', '127.0.0.1', 'shrubycow.herokuapp.com']
 
@@ -136,5 +136,4 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 LOGOUT_REDIRECT_URL = '/' 
 
 django_heroku.settings(locals())
-
 

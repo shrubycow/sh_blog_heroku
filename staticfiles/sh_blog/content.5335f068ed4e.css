@@ -1,0 +1,102 @@
+/* Основная часть */
+.img_after_header{
+    width: 100%;
+    margin: 0px;
+}
+h1{
+    font-size: 48px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Exo 2';
+    font-style: italic;
+}
+div h2{
+    padding-left: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-family: 'Exo 2';
+
+}
+p{
+    margin: 0px 0px 0px 7px;
+    text-align: justify;
+}
+.big_elements{
+    float: left;
+    width: 70%;
+}
+.post_image{
+    height: 281px;
+    width: 200px;
+    float: left;
+    margin: 7px 7px 0px 7px;
+    max-height: 100%;
+}
+.text_content{
+    overflow: hidden;
+    margin: 0px 30px 30px 30px; 
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+}
+.date_author{
+    padding-left: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.date_author li {
+    color: #7e6f6f;
+    display: inline-block;
+    margin-bottom: 0px;
+}          
+.author{
+    float:right;
+}           
+/* Ссылочки */                                                                                                     
+A:link { 
+    text-decoration: none; /* Убирает подчеркивание для ссылок */
+   }
+
+A:visited { 
+    text-decoration: none;
+    color: #3b4d61;
+} 
+
+A:active { text-decoration: none; }
+a{
+    color: #3b4d61;
+}
+ol{
+    list-style-position: inside;
+    padding-left: 7px;
+    text-align: justify;
+}
+
+.small_elements{
+    float: left;
+    width: 400px;
+}
+
+.lesson{
+    overflow: hidden;
+    margin: 0px 30px 15px 0px; 
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+}
+.teacher{
+    text-align: right;
+}
+table{
+    margin:0px;
+    padding:0px;
+    width: 100%;
+}
+.schedule{
+    margin-bottom: 10px;
+}

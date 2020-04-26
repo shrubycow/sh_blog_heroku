@@ -1,0 +1,21 @@
+.wrapper{
+    margin: 20px 15% 20px 15%;
+}
+    h1{
+        font-size: 40px;
+        text-align: center;
+        font-style: italic;
+    }
+    .first, .second, .third{
+        float: left;
+        margin-left: 100px;
+        width: 300px;
+    }
+        .rubric_img{
+            width: 300px;
+            height: 300px;
+        }
+        p{
+            margin-top: 0px;
+            text-align: center;
+        }

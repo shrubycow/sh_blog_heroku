@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Open+Sans&display=swap');
+* {
+    font-family: 'Open Sans';
+}
+/* Ссылки  */
+A{
+    color: #bbcbec;
+}
+nav A:link { 
+    text-decoration: none; /* Убирает подчеркивание для ссылок */
+    color: #bbcbec;
+   }
+
+nav A:visited { 
+    text-decoration: none;
+    color: #bbcbec;
+} 
+
+nav A:active { 
+    color: #bbcbec;
+    text-decoration: none; 
+}
+
+/* Убрать лишние отступы */
+body{
+    margin: 0px;
+    background-color: rgb(234, 229, 250);
+}
+
+/* шапка */
+nav ul li{
+    display: inline;
+    margin-left: 30px;
+    font-size: 22px;
+    vertical-align: center;
+}
+nav ul{
+    margin: 0px;
+    padding: 0px;
+}
+nav{
+    margin-top: 0px;
+    box-shadow: 0px 2px 5px #000;
+    color: #bbcbec;
+    background-color: #3b4d61;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}   
+.auth{
+    float: right;
+    margin-right: 20px;
+}
+
+/* Катает шапку */
+.header{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}

@@ -1,0 +1,19 @@
+h1{
+    font-size: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Exo 2';
+    font-style: italic;
+}
+.errors{
+    color: red;
+    font-style: italic;
+}
+.text_content{
+    margin: 20px 50% 20px 15%;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+}

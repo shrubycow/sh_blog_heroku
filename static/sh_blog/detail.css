@@ -1,0 +1,115 @@
+/* Основная часть */
+h1{
+    font-size: 40px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'Exo 2';
+    font-style: italic;
+}
+p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 7px;
+    text-align: justify;
+}
+.post_image{
+    height: 281px;
+    width: 200px;
+    float: left;
+    margin: 7px 7px 0px 7px;
+    max-height: 100%;
+}
+.text_content{
+    margin: 20px 15% 20px 15%;
+    overflow: hidden;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+}
+.date_author{
+    padding-left: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.date_author li, .date_author_com li {
+    color: #7e6f6f;
+    display: inline-block;
+    margin-bottom: 0px;
+}          
+.author{
+    float:right;
+}  
+ol{
+    list-style-position: inside;
+    padding-left: 7px;
+    text-align: justify;
+}
+h2{
+    margin-bottom: 0px;
+}
+
+/* comment */
+.date_author_com{
+    padding-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.outer{
+    display: table;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.div_avatar{
+    display: table-cell;
+    width: 100px;
+    height: 100%;
+}
+.avatar{
+    position: absolute;
+}
+
+
+.text_content_comment{
+    margin: 20px 20% 20px 20%;
+    overflow: hidden;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    min-height: 138px;
+}
+.comment{
+    float: left;
+}
+
+.add_comment, .comments_h{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+#id_body{
+    width: 100%;
+}
+.reg_pls{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+A:link { 
+    text-decoration: none; /* Убирает подчеркивание для ссылок */
+    color: #3b4d61;
+   }
+
+A, A:visited { 
+    text-decoration: none;
+    color: #3b4d61;
+} 
+
+A:active { 
+    text-decoration: none;
+    color: #3b4d61;
+ }

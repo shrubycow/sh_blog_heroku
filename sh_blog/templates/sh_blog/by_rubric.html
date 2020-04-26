@@ -1,4 +1,4 @@
-{% extends 'layout/basic.html' %}
+/{% extends 'layout/basic.html' %}
 {% load static %}
 {% block styles%}
 <link rel="stylesheet" href="{% static 'sh_blog/content.css' %}">
@@ -16,7 +16,9 @@
         <li class="date">{{ post.created }}</li>
         <li class="author">{{ post.author }}</li>
       </ul>
-      <img src="{{ post.image.url }}" class="post_image">
+      {% if post.image %}
+        <img src="{{ post.image.url }}" class="post_image">
+      {% endif %}
       <p>{{ post.body|truncatewords:150|safe }}</p>
     </div>
     {% empty %}

@@ -51,7 +51,7 @@
 </div>
 {% else %}
 <br>
-<div class="text_content_comment">
+<div class="text_content_comment" id="login_require">
   <p><a href="{% url 'accounts:django_registration_register' %}">Зарегистрируйтесь</a>, или <a href="{% url 'accounts:login'%}">войдите</a>, чтобы оставлять комментарии</p>
 </div>
 {% endif %}

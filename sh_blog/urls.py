@@ -7,8 +7,8 @@ app_name = 'sh_blog'
 
 urlpatterns = [
     path('', index, name='main'),
-    path('not-work/', not_about_work, name='not_work'),
-    path('not-work/<int:pk>/', by_rubric, name='by_rubric'),
+    path('rubrics/', not_about_work, name='not_work'),
+    path('rubrics/<int:pk>/', by_rubric, name='by_rubric'),
     path('<slug:slug>/', post_detail, name='detail'),
 ]
 

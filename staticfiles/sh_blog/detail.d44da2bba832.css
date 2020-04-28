@@ -84,9 +84,7 @@ h2{
     border-radius: 15px;
     min-height: 138px;
 }
-#login_require{
-    min-height: 0px;
-}
+
 .comment{
     float: left;	
 }

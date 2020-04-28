@@ -85,7 +85,7 @@ h2{
     min-height: 138px;
 }
 
-#login_require, #no_comments{
+.require_login, .no_comments{
     min-height: 0px;
 }
 

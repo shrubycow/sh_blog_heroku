@@ -85,12 +85,12 @@ h2{
     min-height: 138px;
 }
 
-#login_require{
+#login_require, #no_comments{
     min-height: 0px;
 }
 
 .comment{
-    float: left;
+    float: left;	
 }
 
 .add_comment, .comments_h{

@@ -4,7 +4,9 @@ from django_registration.backends.activation.views import RegistrationView, Acti
 from django_registration.forms import RegistrationFormUniqueEmail
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
 from django.contrib.auth.decorators import login_required
+from sh_blog.models import UserProfile
 from .forms import AvatarForm
+import os
 
 from sh_blog.models import UserProfile
 # Create your views here.
@@ -62,3 +64,19 @@ class MyPasswordResetConfirmView(PasswordResetConfirmView):
 class MyPasswordResetComplete(PasswordResetCompleteView):
     template_name = 'registration/password_reset_complete1.html'
     title = ('Пароль успешно сброшен')
+
+def avatars_change(request):
+    base_dir = os.getcwd()
+    avatar_dir = os.path.join(base_dir, 'static', 'accounts', 'avatars')
+    files_list = []
+    for root, dirs, files in os.walk(avatar_dir):
+        files_list = files
+
+    return render(request, 'avatars.html', {'avatars': files_list})
+
+def avatar_to_profile(request, avatar_str):
+    cur_user = UserProfile.objects.get(user=request.user)
+    cur_user.avatar = avatar_str
+    cur_user.save()
+
+    return redirect('accounts:profile')

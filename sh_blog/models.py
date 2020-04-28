@@ -66,7 +66,7 @@ class TodaySchedule(models.Model):
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.PROTECT)
-    avatar = models.ImageField(upload_to=user_profile_media_path, default='no-avatar-300x300.jpg')
+    avatar = models.CharField(max_length=200, default='no-avatar-300x300.jpg')
 
     class Meta:
         verbose_name = 'Профиль'

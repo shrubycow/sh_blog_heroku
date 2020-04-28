@@ -14,7 +14,7 @@
       <li class="author">{{ post.author }}</li>
     </ul>
     {% if post.image %}
-      <img src="{{ post.image.url }}" class="post_image">
+      <img src="{% static post.image %%}" class="post_image">
     {% endif %}
     <p>{{ post.body|safe }}</p>
 </div>
@@ -27,7 +27,7 @@
   </ul>
   <div class="outer">
       <div class="div_avatar">
-        <img src="{{ comment.profile.avatar.url }}" width="100" height="100" class="avatar">
+        <img src="{% static comment.profile.avatar %}" width="100" height="100" class="avatar">
       </div>
       <p class="comment">{{ comment.body }}</p>
   </div>	

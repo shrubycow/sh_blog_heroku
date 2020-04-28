@@ -1,0 +1,13 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'accounts/avatars.css' %}">
+{% endblock %}
+{% block content %}
+<div class="text_content">
+<h1>Выбор аватара</h1>
+{% for avatar in avatars %}
+  <a href="{% url 'accounts:avatar_to_profile' avatar %}"><img src="{% static avatar %}" class="avatar"></a>
+{% endfor %}
+</div>
+{% endblock %}

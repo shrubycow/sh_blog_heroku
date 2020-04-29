@@ -25,7 +25,7 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     fixed = models.BooleanField(default=False)
-    image = models.CharField(max_length=250)
+    image = models.CharField(max_length=250, blank=True, null=True)
 
     class Meta:
         ordering = ('-publish',)

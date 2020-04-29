@@ -5,6 +5,7 @@
 {% endblock %}
 {{ rubric.name }}
 {% block title%}
+{{ rubric.name }}
 {% endblock %}
 {% block content %}
 <h1>{{rubric.name}}</h1>
@@ -17,7 +18,7 @@
         <li class="author">{{ post.author }}</li>
       </ul>
       {% if post.image %}
-        <img src="{{ post.image.url }}" class="post_image">
+        <img src="{% static post.image %}" class="post_image">
       {% endif %}
       <p>{{ post.body|truncatewords:150|safe }}</p>
     </div>

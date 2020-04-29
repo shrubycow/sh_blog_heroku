@@ -1,5 +1,12 @@
 {% extends 'layout/basic.html' %}
 {% load static %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'accounts/login.css' %}">
+{% endblock %}
+{% block title %}Активация{% endblock %}
 {% block content %}
-<p>Активация была проведена успешно</p>
+<div class="text_content">
+  <h1>Активация</h1>
+  <p>Активация была проведена успешно</p>
+</div>
 {% endblock %}

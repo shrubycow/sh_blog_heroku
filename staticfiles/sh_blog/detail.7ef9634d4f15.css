@@ -119,24 +119,32 @@ A:active {
     color: #3b4d61;
 }
 
-.bbcode_buttons a{
-    background-position: center center;
+#bbcode_b{
     float: left;
     background-repeat: no-repeat;
+    background-image: url("/static/bold.3f709bf0b24e.png");
     display: block;
     width: 30px;
     height: 30px;
-    background-color: white; 
-}
-
-#bbcode_b{
-    background-image: url(/static/bold.png);
+    background-color: white;
 }
 #bbcode_i{
     margin-left: 5px;
-    background-image: url(/static/italic.png);
+    float: left;
+    background-repeat: no-repeat;
+    background-image: url("/static/italic.a96b9b62c6de.png");
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: white;
 }
 #bbcode_u{
     margin-left: 5px;
-    background-image: url(/static/underline.png);
+    float: left;
+    background-repeat: no-repeat;
+    background-image: url("/static/underline.23002d3191d4.png");
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: white;
 }

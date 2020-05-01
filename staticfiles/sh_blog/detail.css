@@ -1,4 +1,4 @@
-/* Основная часть */
+	/* Основная часть */
 h1{
     font-size: 40px;
     text-align: center;
@@ -117,4 +117,26 @@ A, A:visited {
 A:active { 
     text-decoration: none;
     color: #3b4d61;
- }
+}
+
+.bbcode_buttons a{
+    background-position: center center;
+    float: left;
+    background-repeat: no-repeat;
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-color: white; 
+}
+
+#bbcode_b{
+    background-image: url(/static/bold.png);
+}
+#bbcode_i{
+    margin-left: 5px;
+    background-image: url(/static/italic.png);
+}
+#bbcode_u{
+    margin-left: 5px;
+    background-image: url(/static/underline.png);
+}

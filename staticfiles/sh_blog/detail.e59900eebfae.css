@@ -1,4 +1,4 @@
-	/* Основная часть */
+/* Основная часть */
 h1{
     font-size: 40px;
     text-align: center;
@@ -119,24 +119,31 @@ A:active {
     color: #3b4d61;
 }
 
-.bbcode_buttons a{
-    background-position: center center;
-    float: left;
-    background-repeat: no-repeat;
-    display: block;
-    width: 30px;
-    height: 30px;
-    background-color: white; 
-}
-
 #bbcode_b{
-    background-image: url(/static/bold.png);
+    float: left;
+    background-image: = url("/static/bold.592b1d03bc2e.png");
+    display: block;
+    width: 23px;
+    height: 23px;
+    background-color: white;
 }
 #bbcode_i{
     margin-left: 5px;
-    background-image: url(/static/italic.png);
+    float: left;
+    background-repeat: no-repeat;
+    background-image: = url("/static/italic.7280281a9d18.png");
+    display: block;
+    width: 23px;
+    height: 23px;
+    background-color: white;
 }
-#bbcode_u{
+#bbcode_b{
     margin-left: 5px;
-    background-image: url(/static/underline.png);
+    float: left;
+    background-repeat: no-repeat;
+    background-image: = url("/static/underline.cf072eb80d13.png");
+    display: block;
+    width: 23px;
+    height: 23px;
+    background-color: white;
 }

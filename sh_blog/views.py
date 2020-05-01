@@ -37,6 +37,7 @@ def post_detail(request, slug):
                 new_comment = form.save(commit=False)
                 new_comment.post = Post.objects.get(slug=slug)
                 new_comment.profile = UserProfile.objects.get(user=request.user)
+                new_comment = bb_parse(new_comment)
                 new_comment.save()
                 return redirect('sh_blog:detail', slug)
             return render(request, 'sh_blog/detail.html', {'post': post, 'comments': comments, 'form': form})

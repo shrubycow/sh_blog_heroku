@@ -3,6 +3,25 @@
 {% block styles %}
     <link rel="stylesheet" href="{% static 'sh_blog/detail.css' %}">
 {% endblock %}
+{% block scripts %}
+<script>
+  function insertTextAtCursor(el, text, offset) {
+    var val = el.value, endIndex, range, doc = el.ownerDocument;
+    if (typeof el.selectionStart == "number"
+            && typeof el.selectionEnd == "number") {
+        endIndex = el.selectionEnd;
+        el.value = val.slice(0, endIndex) + text + val.slice(endIndex);
+        el.selectionStart = el.selectionEnd = endIndex + text.length+(offset?offset:0);
+    } else if (doc.selection != "undefined" && doc.selection.createRange) {
+        el.focus();
+        range = doc.selection.createRange();
+        range.collapse(false);
+        range.text = text;
+        range.select();
+    }
+}
+</script>
+{% endblock %}
 {% block title %}
 {{ post.title }}
 {% endblock %}
@@ -29,7 +48,7 @@
       <div class="div_avatar">
         <img src="{% static comment.profile.avatar %}" width="100" height="100" class="avatar">
       </div>
-      <p class="comment">{{ comment.body }}</p>
+      <p class="comment">{{ comment.body|safe }}</p>
   </div>	
 </div>
 {% empty %}
@@ -41,13 +60,18 @@
 {% endfor %}
 {% if user.is_authenticated %}
 <div class="add_comment">
-<form method="post">
-  {% csrf_token %}
   <h2>Добавить комментарий:</h2>
-  {{ form.body }}
-  <br>
-  <input type="submit" value="Добавить">
-</form>
+  <div class="bbcode_buttons">
+    <a href="" name="bold" id="bbcode_b" onClick="insertTextAtCursor(document.getElementById('id_body'), '[b][/b]'); return false;"></a>
+    <a href="" name="italic" id="bbcode_i" onClick="insertTextAtCursor(document.getElementById('id_body'), '[i][/i]'); return false;"></a>
+    <a href="" name="underline" id="bbcode_u" onClick="insertTextAtCursor(document.getElementById('id_body'), '[u][/u]'); return false;"></a>
+  </div>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.body }}
+    <br>
+    <input type="submit" value="Добавить">
+  </form>
 </div>
 {% else %}
 <br>

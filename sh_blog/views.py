@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.template.loader import get_template
 from django.core.mail import send_mail
 from django.core.exceptions import PermissionDenied
 from django.views.generic.base import TemplateView
 from .models import Post, Rubric, TodaySchedule, Comment, UserProfile
 from precise_bbcode.bbcode import get_parser
 from .forms import CommentForm
-
+import datetime
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 
 # Create your views here.
@@ -20,11 +22,23 @@ def bb_parse(elements):
         elements.body = parser.render(str(elements.body))
     return elements
 
+def test(request):
+    response  = HttpResponse('Hello moto')
+    response.delete_cookie('not_first_time')
+    return response
+
 def index(request):
-    posts = Post.objects.order_by('-created').filter(status='published')[:5]
-    posts = bb_parse(posts)
-    schedule = TodaySchedule.objects.all()
-    return render(request, 'sh_blog/index.html', {'posts': posts, 'schedule': schedule})
+    if 'not_first_time' in request.COOKIES:
+        posts = Post.objects.order_by('-created').filter(status='published')[:5]
+        posts = bb_parse(posts)
+        schedule = TodaySchedule.objects.all()
+        response = render(request, 'sh_blog/index.html', {'posts': posts, 'schedule': schedule})
+    else:
+        template = get_template('sh_blog/greetings.html')
+        response = HttpResponse(template.render(request=request))
+        expires = datetime.datetime(year=9999, month=1, day=1)
+        response.set_cookie('not_first_time', True, expires=expires)
+    return response
 
 def post_detail(request, slug):
     post = Post.objects.get(slug=slug)

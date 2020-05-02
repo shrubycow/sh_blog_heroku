@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{% static 'sh_blog/detail.css' %}">
 {% endblock %}
 {% block scripts %}
-<script>
+<script>{% comment %}Этот код я украл{% endcomment %}
   function insertTextAtCursor(el, text, offset) {
     var val = el.value, endIndex, range, doc = el.ownerDocument;
     if (typeof el.selectionStart == "number"

@@ -1,5 +1,6 @@
 {% extends 'layout/basic.html' %}
 {% load static %}
+{% load sh_blog_extras %}
 {% block styles %}
     <link rel="stylesheet" href="{% static 'sh_blog/detail.css' %}">
 {% endblock %}
@@ -27,15 +28,21 @@
 {% endblock %}
 {% block content %}
 <div class="text_content">
-<h1>{{ post.title }}</h1>
-    <ul class="date_author">
-      <li class="date">{{ post.created }}</li>
-      <li class="author">{{ post.author }}</li>
-    </ul>
+  <h1 class="title">{{ post.title }}</h1>
+  <img src={% static "sh_blog/empty_heart.png" %} class="like"></img>
+  <ul class="date_author">
+    <li class="date">{{ post.created }}</li>
+    <li class="author">{{ post.author }}</li>
+  </ul>
     {% if post.image %}
       <img src="{% static post.image %%}" class="post_image">
     {% endif %}
     <p>{{ post.body|safe }}</p>
+    {% if post|is_fan:user %}
+      <p>{{user.username}} понравился этот пост</p>
+    {% else %}
+      <p>{{ user.username }} не нажимал лайк</p>
+    {% endif %}
 </div>
 <h2 class="comments_h">Комментарии</h2>
 {% for comment in comments %}

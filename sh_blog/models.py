@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
 from precise_bbcode import fields
 
 def user_media_path(instance, filename):
@@ -26,6 +28,7 @@ class Post(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     fixed = models.BooleanField(default=False)
     image = models.CharField(max_length=250, blank=True, null=True)
+    likes = GenericRelation('Like')    
 
     class Meta:
         ordering = ('-publish',)
@@ -34,6 +37,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def total_likes(self):
+        return self.likes.count()
 
 class Rubric(models.Model):
 
@@ -90,3 +96,9 @@ class Comment(models.Model):
         if len(self.body) > 50:
             return self.body
         return self.body[:50]+"..."
+
+class Like(models.Model):
+    user = models.ForeignKey(User, related_name='likes', on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')

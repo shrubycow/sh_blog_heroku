@@ -38,7 +38,17 @@ p{
     color: #7e6f6f;
     display: inline-block;
     margin-bottom: 0px;
-}          
+}         
+.title{
+    display: inline-block;
+    margin-left: 17%;
+}      
+.like{
+    margin-top: 10px;
+    width: 56px;
+    height: 50px;
+    float: right;
+}
 .author{
     float:right;
 }  

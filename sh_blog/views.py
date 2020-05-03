@@ -4,7 +4,8 @@ from django.template.loader import get_template
 from django.core.mail import send_mail
 from django.core.exceptions import PermissionDenied
 from django.views.generic.base import TemplateView
-from .models import Post, Rubric, TodaySchedule, Comment, UserProfile
+from django.contrib.contenttypes.models import ContentType
+from .models import Post, Rubric, TodaySchedule, Comment, UserProfile, Like
 from precise_bbcode.bbcode import get_parser
 from .forms import CommentForm
 import datetime
@@ -13,6 +14,7 @@ import datetime
 # Create your views here.
 
 def bb_parse(elements):
+    """Парсит bbcode в постах или комментариях"""
     parser = get_parser()
     try:
         iter(elements)
@@ -21,6 +23,24 @@ def bb_parse(elements):
     except TypeError:
         elements.body = parser.render(str(elements.body))
     return elements
+
+def add_like(obj, user):
+    """Лайкает obj"""
+    obj_type = ContentType.objects.get_for_model(obj)
+    like, is_created = Like.objects.get_or_create(content_type=obj_type, object_id=obj.id, user=user)
+    return like
+    
+def remove_like(obj, user):
+    """Убирает лайк в obj"""
+    obj_type = ContentType.objects.get_for_model(obj)
+    Like.objects.filter(content_type=obj_type, object_id=obj.id, user=user).delete()
+
+def is_fan(obj, user) -> bool:
+    """Проверяет, лайкнул ли 'user' объект 'obj'"""
+    if not user.is_authenticated:
+        return False
+    obj_type = ContentType.objects.get_for_model(obj)
+    return Like.objects.filter(content_type=obj_type, object_id=obj.id, user=user).exists()
 
 def test(request):
     response  = HttpResponse('Hello moto')
@@ -43,6 +63,9 @@ def index(request):
 def post_detail(request, slug):
     post = Post.objects.get(slug=slug)
     post = bb_parse(post)
+
+    post_liked = is_fan(post, request.user)
+    
     comments = Comment.objects.filter(post__slug=slug)
     if request.method == 'POST':
         if request.user.is_authenticated:    

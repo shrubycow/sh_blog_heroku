@@ -43,7 +43,6 @@ p{
     text-align: center;
 }
 .title{
-    margin-left: 28px;
     display: inline-block;
 }      
 .like{
@@ -143,13 +142,13 @@ A:active {
 }
 
 #bbcode_b{
-    background-image: url(/static/bold.png);
+    background-image: url("/static/bold.3f709bf0b24e.png");
 }
 #bbcode_i{
     margin-left: 5px;
-    background-image: url(/static/italic.png);
+    background-image: url("/static/italic.a96b9b62c6de.png");
 }
 #bbcode_u{
     margin-left: 5px;
-    background-image: url(/static/underline.png);
+    background-image: url("/static/underline.23002d3191d4.png");
 }

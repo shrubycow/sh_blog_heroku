@@ -38,10 +38,13 @@ p{
     color: #7e6f6f;
     display: inline-block;
     margin-bottom: 0px;
-}         
+}   
+.title_like{
+    text-align: center;
+}
 .title{
+    margin-left: 28px;
     display: inline-block;
-    margin-left: 17%;
 }      
 .like{
     margin-top: 10px;

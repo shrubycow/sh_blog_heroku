@@ -28,8 +28,10 @@
 {% endblock %}
 {% block content %}
 <div class="text_content">
-  <h1 class="title">{{ post.title }}</h1>
-  <img src={% static "sh_blog/empty_heart.png" %} class="like"></img>
+  <div class="title_like">
+    <h1 class="title">{{ post.title }}</h1>
+    <img src={% static "sh_blog/empty_heart.png" %} class="like"></img>
+  </div>
   <ul class="date_author">
     <li class="date">{{ post.created }}</li>
     <li class="author">{{ post.author }}</li>

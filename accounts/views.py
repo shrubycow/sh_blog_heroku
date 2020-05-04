@@ -5,7 +5,6 @@ from django_registration.forms import RegistrationFormUniqueEmail
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
 from django.contrib.auth.decorators import login_required
 from sh_blog.models import UserProfile
-from .forms import AvatarForm
 import os
 
 from sh_blog.models import UserProfile
@@ -33,17 +32,7 @@ class MyActivationView(ActivationView):
 @login_required
 def profile(request):
     cur_profile = UserProfile.objects.get(user=request.user)
-    if request.method == 'POST':
-        form = AvatarForm(request.POST, request.FILES)
-        if form.is_valid():
-            if str(cur_profile.avatar) != 'no-avatar-300x300.jpg':
-                cur_profile.avatar.delete()
-            cur_profile.avatar = form.cleaned_data['avatar']
-            cur_profile.save()
-            return redirect('accounts:profile')
-    else:
-        form = AvatarForm()
-    return render(request, 'registration/profile.html', {'cur_profile': cur_profile, 'form': form})
+    return render(request, 'registration/profile.html', {'cur_profile': cur_profile})
 
 
 class MyPasswordResetView(PasswordResetView):

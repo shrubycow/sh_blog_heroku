@@ -3,7 +3,6 @@ h1{
     font-size: 40px;
     text-align: center;
     margin-top: 10px;
-    margin-bottom: 0px;
     font-family: 'Exo 2';
     font-style: italic;
 }
@@ -53,14 +52,11 @@ p{
     float: right;
 }
 .like_count{
-    position: relative;
-    float: right;
-    left: 56px;
-    width: 56px;
     color: #3b4d61;
     font-family: 'Exo 2';
-    text-align: center;
-    font-size: 14pt;
+    text-align: right;
+    padding-left: 20px;
+    margin-bottom: 20px;
 }
 .author{
     float:right;
@@ -153,13 +149,13 @@ A:active {
 }
 
 #bbcode_b{
-    background-image: url(/static/bold.png);
+    background-image: url("/static/bold.3f709bf0b24e.png");
 }
 #bbcode_i{
     margin-left: 5px;
-    background-image: url(/static/italic.png);
+    background-image: url("/static/italic.a96b9b62c6de.png");
 }
 #bbcode_u{
     margin-left: 5px;
-    background-image: url(/static/underline.png);
+    background-image: url("/static/underline.23002d3191d4.png");
 }

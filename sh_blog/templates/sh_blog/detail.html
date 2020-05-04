@@ -2,7 +2,7 @@
 {% load static %}
 {% load sh_blog_extras %}
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'sh_blog/detail.css' %}">
+    <link rel="stylesheet" href={% static 'sh_blog/detail.css' %}>
 {% endblock %}
 {% block scripts %}
 <script>{% comment %}Этот код я украл{% endcomment %}
@@ -30,21 +30,24 @@
 <div class="text_content">
   <div class="title_like">
     <h1 class="title">{{ post.title }}</h1>
-    <img src={% static "sh_blog/empty_heart.png" %} class="like"></img>
+    {% if post|is_fan:user %}
+      <a href={% url 'sh_blog:like' 1 post.id%}><img src={% static "sh_blog/filled_heart.png" %} class="like"></img></a>
+    {% else %}
+      <a href={% url 'sh_blog:like' 1 post.id%}><img src={% static "sh_blog/empty_heart.png" %} class="like"></img></a>
+    {% endif %}
   </div>
+  {% if post.total_likes %}
+  <p class="like_count">{{post.total_likes}}</p>
+  {% endif %}
+  <br>
   <ul class="date_author">
     <li class="date">{{ post.created }}</li>
     <li class="author">{{ post.author }}</li>
   </ul>
     {% if post.image %}
-      <img src="{% static post.image %%}" class="post_image">
+      <img src={% static post.image %} class="post_image">
     {% endif %}
     <p>{{ post.body|safe }}</p>
-    {% if post|is_fan:user %}
-      <p>{{user.username}} понравился этот пост</p>
-    {% else %}
-      <p>{{ user.username }} не нажимал лайк</p>
-    {% endif %}
 </div>
 <h2 class="comments_h">Комментарии</h2>
 {% for comment in comments %}
@@ -55,7 +58,7 @@
   </ul>
   <div class="outer">
       <div class="div_avatar">
-        <img src="{% static comment.profile.avatar %}" width="100" height="100" class="avatar">
+        <img src={% static comment.profile.avatar %} width="100" height="100" class="avatar">
       </div>
       <p class="comment">{{ comment.body|safe }}</p>
   </div>	

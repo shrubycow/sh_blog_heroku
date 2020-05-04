@@ -4,8 +4,10 @@ from django.template.loader import get_template
 from django.core.mail import send_mail
 from django.core.exceptions import PermissionDenied
 from django.views.generic.base import TemplateView
+from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from .models import Post, Rubric, TodaySchedule, Comment, UserProfile, Like
+from .likes import add_like, remove_like, is_fan
 from precise_bbcode.bbcode import get_parser
 from .forms import CommentForm
 import datetime
@@ -63,9 +65,6 @@ def index(request):
 def post_detail(request, slug):
     post = Post.objects.get(slug=slug)
     post = bb_parse(post)
-
-    post_liked = is_fan(post, request.user)
-    
     comments = Comment.objects.filter(post__slug=slug)
     if request.method == 'POST':
         if request.user.is_authenticated:    
@@ -95,5 +94,15 @@ def by_rubric(request, pk):
     rubric = Rubric.objects.get(id=pk)
     return render(request, 'sh_blog/by_rubric.html', {'posts': posts, 'rubric': rubric})
 
-
+@login_required
+def add_or_remove_like(request, post_or_comment, object_id):
+    if bool(post_or_comment):
+        object = Post.objects.get(id=object_id)
+    else:
+        object = Comment.objects.get(id=object_id)
+    if is_fan(object, request.user):
+        remove_like(object, request.user)
+    else:
+        add_like(object, request.user)
+    return redirect(request.META['HTTP_REFERER'])
     

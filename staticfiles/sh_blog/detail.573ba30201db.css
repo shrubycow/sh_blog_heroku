@@ -51,15 +51,17 @@ p{
     width: 56px;
     height: 50px;
     float: right;
+    margin-bottom: 10px;
 }
-.like_count{
-    position: relative;
+.like_count_wrapper{
+    width: 6%;
     float: right;
-    left: 56px;
-    width: 56px;
+    overflow: visible;
+}
+.like_count_wrapper p{
     color: #3b4d61;
     font-family: 'Exo 2';
-    text-align: center;
+    text-align: right;
     font-size: 14pt;
 }
 .author{
@@ -153,13 +155,13 @@ A:active {
 }
 
 #bbcode_b{
-    background-image: url(/static/bold.png);
+    background-image: url("/static/bold.3f709bf0b24e.png");
 }
 #bbcode_i{
     margin-left: 5px;
-    background-image: url(/static/italic.png);
+    background-image: url("/static/italic.a96b9b62c6de.png");
 }
 #bbcode_u{
     margin-left: 5px;
-    background-image: url(/static/underline.png);
+    background-image: url("/static/underline.23002d3191d4.png");
 }

@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
+from django.http import HttpResponse, Http404
 from django.template.loader import get_template
 from django.core.mail import send_mail
 from django.core.exceptions import PermissionDenied
@@ -11,9 +11,7 @@ from .likes import add_like, remove_like, is_fan
 from precise_bbcode.bbcode import get_parser
 from .forms import CommentForm
 import datetime
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 
-# Create your views here.
 
 def bb_parse(elements):
     """Парсит bbcode в постах или комментариях"""
@@ -25,24 +23,6 @@ def bb_parse(elements):
     except TypeError:
         elements.body = parser.render(str(elements.body))
     return elements
-
-def add_like(obj, user):
-    """Лайкает obj"""
-    obj_type = ContentType.objects.get_for_model(obj)
-    like, is_created = Like.objects.get_or_create(content_type=obj_type, object_id=obj.id, user=user)
-    return like
-    
-def remove_like(obj, user):
-    """Убирает лайк в obj"""
-    obj_type = ContentType.objects.get_for_model(obj)
-    Like.objects.filter(content_type=obj_type, object_id=obj.id, user=user).delete()
-
-def is_fan(obj, user) -> bool:
-    """Проверяет, лайкнул ли 'user' объект 'obj'"""
-    if not user.is_authenticated:
-        return False
-    obj_type = ContentType.objects.get_for_model(obj)
-    return Like.objects.filter(content_type=obj_type, object_id=obj.id, user=user).exists()
 
 def test(request):
     response  = HttpResponse('Hello moto')
@@ -63,7 +43,7 @@ def index(request):
     return response
 
 def post_detail(request, slug):
-    post = Post.objects.get(slug=slug)
+    post = get_object_or_404(Post, slug=slug)
     post = bb_parse(post)
     comments = Comment.objects.filter(post__slug=slug)
     if request.method == 'POST':
@@ -89,9 +69,9 @@ def not_about_work(request):
     return render(request, 'sh_blog/not_work.html', {'rubrics': rubrics})
 
 def by_rubric(request, pk):
+    rubric = get_object_or_404(Rubric, id=pk)
     posts = Post.objects.filter(rubric__id=pk).filter(status='published')
     posts = bb_parse(posts)
-    rubric = Rubric.objects.get(id=pk)
     return render(request, 'sh_blog/by_rubric.html', {'posts': posts, 'rubric': rubric})
 
 @login_required

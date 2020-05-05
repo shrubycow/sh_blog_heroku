@@ -60,7 +60,7 @@ def avatars_change(request):
     files_list = []
     for root, dirs, files in os.walk(avatar_dir):
         files_list = files
-
+    files_list.remove('no-avatar-300x300.jpg')
     return render(request, 'avatars.html', {'avatars': files_list})
 
 def avatar_to_profile(request, avatar_str):

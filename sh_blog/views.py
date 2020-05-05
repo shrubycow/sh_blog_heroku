@@ -84,5 +84,5 @@ def add_or_remove_like(request, post_or_comment, object_id):
         remove_like(object, request.user)
     else:
         add_like(object, request.user)
-    return redirect(request.META['HTTP_REFERER'])
+    return HttpResponse(object.total_likes())
     

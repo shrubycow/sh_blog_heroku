@@ -5,8 +5,9 @@
     <link rel="stylesheet" href={% static 'sh_blog/detail.css' %}>
 {% endblock %}
 {% block scripts %}
-<script>{% comment %}Этот код я украл{% endcomment %}
-  function insertTextAtCursor(el, text, offset) {
+<script>
+  
+  function insertTextAtCursor(el, text, offset) { //Эту функцию я украл
     var val = el.value, endIndex, range, doc = el.ownerDocument;
     if (typeof el.selectionStart == "number"
             && typeof el.selectionEnd == "number") {
@@ -21,6 +22,31 @@
         range.select();
     }
 }
+  function test(){ //а эту нет
+    const request = new XMLHttpRequest();
+    const url = "{% url 'sh_blog:like' 1 post.id %}";
+
+    request.open('GET', url);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+    request.addEventListener("readystatechange", () => {
+      if (request.readyState === 4 && request.status === 200) {
+        if (request.responseText != "0"){
+        document.getElementById('id_like_count').innerHTML = request.responseText;
+      } else {
+        document.getElementById('id_like_count').innerHTML = "";
+      }
+        console.log(request.responseText);
+      }
+    });
+    request.send();
+    if (document.getElementById('id_like1')){
+      document.getElementById('id_like1').src="{% static 'sh_blog/empty_heart.png' %}";
+      document.getElementById('id_like1').id="id_like0";
+    } else {
+      document.getElementById('id_like0').src="{% static 'sh_blog/filled_heart.png' %}";
+      document.getElementById('id_like0').id="id_like1";
+    }    
+  }
 </script>
 {% endblock %}
 {% block title %}
@@ -31,14 +57,16 @@
   <div class="title_like">
     <h1 class="title">{{ post.title }}</h1>
     {% if post|is_fan:user %}
-      <a href={% url 'sh_blog:like' 1 post.id%}><img src={% static "sh_blog/filled_heart.png" %} class="like"></img></a>
+      <a href="#" onClick="test()"><img src={% static "sh_blog/filled_heart.png" %} class="like" id="id_like1"></img></a>
     {% else %}
-      <a href={% url 'sh_blog:like' 1 post.id%}><img src={% static "sh_blog/empty_heart.png" %} class="like"></img></a>
+      <a href="#" onClick="test()"><img src={% static "sh_blog/empty_heart.png" %} class="like" id="id_like0"></img></a>
     {% endif %}
   </div>
-  {% if post.total_likes %}
-  <p class="like_count">{{post.total_likes}}</p>
-  {% endif %}
+  <p class="like_count" id="id_like_count">
+    {% if post.total_likes %}
+    {{post.total_likes}}
+    {% endif %}
+  </p>
   <br>
   <ul class="date_author">
     <li class="date">{{ post.created }}</li>

@@ -74,17 +74,20 @@ def by_rubric(request, pk):
     posts = bb_parse(posts)
     return render(request, 'sh_blog/by_rubric.html', {'posts': posts, 'rubric': rubric})
 
-@login_required
+
 def add_or_remove_like(request, post_or_comment, object_id):
-    if bool(post_or_comment):
-        object = Post.objects.get(id=object_id)
+    if not request.user.is_authenticated:
+        return HttpResponse(-1)
     else:
-        object = Comment.objects.get(id=object_id)
-    if is_fan(object, request.user):
-        remove_like(object, request.user)
-    else:
-        add_like(object, request.user)
-    return HttpResponse(object.total_likes())
+        if bool(post_or_comment):
+            object = Post.objects.get(id=object_id)
+        else:
+            object = Comment.objects.get(id=object_id)
+        if is_fan(object, request.user):
+            remove_like(object, request.user)
+        else:
+            add_like(object, request.user)
+        return HttpResponse(object.total_likes())
     
 def resume(request):
     return render(request, 'sh_blog/resume.html')

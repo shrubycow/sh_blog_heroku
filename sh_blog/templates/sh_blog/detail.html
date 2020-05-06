@@ -30,12 +30,17 @@
     request.setRequestHeader('Content-Type', 'application/x-www-form-url');
     request.addEventListener("readystatechange", () => {
       if (request.readyState === 4 && request.status === 200) {
-        if (request.responseText != "0"){
-        document.getElementById('id_like_count').innerHTML = request.responseText;
-      } else {
-        document.getElementById('id_like_count').innerHTML = "";
-      }
         console.log(request.responseText);
+        if(request.responseText == "-1"){
+          window.location.replace("/accounts/login/");
+          return true;
+        } else {
+          if (request.responseText != "0"){
+            document.getElementById('id_like_count').innerHTML = request.responseText;
+          } else {
+              document.getElementById('id_like_count').innerHTML = "";
+            }
+        }
       }
     });
     request.send();

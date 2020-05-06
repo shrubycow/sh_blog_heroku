@@ -1,0 +1,30 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+{% load sh_blog_extras %}
+{% block styles %}
+    <link rel="stylesheet" href={% static 'sh_blog/resume.css' %}>
+{% endblock %}
+{% block title %}Резюме{% endblock %}
+{% block content %}
+<div class="text_content">
+  <div class="image">
+    <img src={% static 'sh_blog/resume.jpg' %}>
+  </div>
+  <div class="resume">
+    <h2>Шрубиков Александр</h2>
+    <h3>Контакты</h3>
+    <p>Телефон: +375295169760</p>
+    <p>email: alexandriyskiy0@gmail.com</p>
+    <h3>Цель</h3>
+    <p>Начать карьеру junior backend developer и профессионально развиваться в данной области.</p>
+    <h3>Навыки</h3>
+    <p>Имею навыки работы с Python, Django Framework, HTML, CSS. Знаю основы SQL, работал с Bash.</p>
+    <p>Имею хорошие аналитические способности. Легко обучаюсь</p>
+    <p>Английский: pre-intermediate</p>
+    <h3>Образование</h3>
+    <p>2019</p>
+    <p>Белорусский государственный университет информатики и радиоэлектроники</p>
+    <p>Радиоэлектронная защита информации</p>
+  </div>
+</div>
+{% endblock %}

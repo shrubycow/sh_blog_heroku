@@ -1,0 +1,47 @@
+.text_content{
+    margin: 20px 15% 20px 15%;
+    overflow: hidden;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    border-radius: 15px;
+    max-height: 460px;
+}
+.image{
+    width: 21%;
+    height: 100%;
+}
+img{
+    margin-top: 10px;
+    width: 191px;
+    height: 196px;
+}
+.resume{
+    position: relative;
+    bottom: 201px;
+    float: right;
+    width: 79%;
+}
+
+h2{
+    font-size: 16pt;
+    text-align: left;
+    margin-left: 7px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-family: 'Exo 2';
+    font-style: italic;
+}
+h3{
+    font-family: 'Exo 2';
+    margin-bottom: 0px;
+    margin-left: 7px;
+}
+p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 7px;
+    text-align: justify;
+}
+

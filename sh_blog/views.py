@@ -86,3 +86,5 @@ def add_or_remove_like(request, post_or_comment, object_id):
         add_like(object, request.user)
     return HttpResponse(object.total_likes())
     
+def resume(request):
+    return render(request, 'sh_blog/resume.html')

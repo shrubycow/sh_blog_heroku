@@ -1,15 +1,29 @@
-.text_content{
+@media screen{
+  .text_content{
+      margin: 20px 15% 20px 15%;
+      overflow: hidden;
+      background-color: white;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      border-radius: 15px;
+      max-height: 460px;
+  }
+}
+@media handheld{
+  .text_content{
     margin: 20px 15% 20px 15%;
-    overflow: auto;
+    overflow: hidden;
     background-color: white;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
     border-radius: 15px;
-    max-height: 460px;
+    max-height: 630px;
+  }
 }
 .image{
-    width: 21%;
+    width: 192px;
     height: 100%;
 }
 img{

@@ -40,17 +40,18 @@
           } else {
               document.getElementById('id_like_count').innerHTML = "";
             }
+            if (document.getElementById('id_like1')){
+              document.getElementById('id_like1').src="{% static 'sh_blog/empty_heart.png' %}";
+              document.getElementById('id_like1').id="id_like0";
+            } else {
+              document.getElementById('id_like0').src="{% static 'sh_blog/filled_heart.png' %}";
+              document.getElementById('id_like0').id="id_like1";
+            }    
         }
       }
     });
     request.send();
-    if (document.getElementById('id_like1')){
-      document.getElementById('id_like1').src="{% static 'sh_blog/empty_heart.png' %}";
-      document.getElementById('id_like1').id="id_like0";
-    } else {
-      document.getElementById('id_like0').src="{% static 'sh_blog/filled_heart.png' %}";
-      document.getElementById('id_like0').id="id_like1";
-    }    
+    
   }
 </script>
 {% endblock %}

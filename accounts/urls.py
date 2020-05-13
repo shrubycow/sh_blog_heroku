@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import MyRegistrationView, MyActivationView, profile, MyPasswordResetView, MyPasswordResetDoneView, MyPasswordResetConfirmView, MyPasswordResetComplete
-from .views import avatars_change, avatar_to_profile
+from .views import avatars_change, avatar_to_profile, is_email_free
 from django.views.generic.base import TemplateView
 from django.contrib.auth.views import LoginView, LogoutView
 
@@ -47,4 +47,5 @@ urlpatterns = [
     path('accounts/logout/', LogoutView.as_view(), name='logout'),
     path('accounts/change_avatar/', avatars_change, name='avatars_change'),
     path('accounts/change_avatar/<str:avatar_str>/', avatar_to_profile, name='avatar_to_profile'),
+    path('accounts/email/<str:email>/', is_email_free, name="email_free"),
 ]

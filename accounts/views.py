@@ -4,6 +4,8 @@ from django_registration.backends.activation.views import RegistrationView, Acti
 from django_registration.forms import RegistrationFormUniqueEmail
 from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView, PasswordResetDoneView, PasswordResetCompleteView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.http import HttpResponse
 from sh_blog.models import UserProfile
 import os
 
@@ -69,3 +71,6 @@ def avatar_to_profile(request, avatar_str):
     cur_user.save()
 
     return redirect('accounts:profile')
+
+def is_email_free(request, email):
+    return HttpResponse(str(not User.objects.filter(email=email).exists()))

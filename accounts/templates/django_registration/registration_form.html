@@ -13,13 +13,12 @@
     <p class="error">{{ error }}</p>
     {% endfor %}
     {% for field in form %}
-    <p>
+    <p id="{% cycle 'input1' 'input2' 'input3' 'input4'%}">
       {{ field.label_tag }}
       <br>
-      {{ field }} 
-      {% if field.auto_id != 'id_password1' %}
-        {{ field.help_text }}
-      {% else %}
+      {{ field }}
+      {% if field.auto_id == 'id_email'%}<br><span id="message"></span>{% endif %}
+      {% if field.auto_id == 'id_password1' %}
       <ul class="pass_help">
         <li>Ваш пароль не должен содержать личные данные.</li>
         <li>Ваш пароль должен содержать как минимум 8 символов.</li>
@@ -35,4 +34,39 @@
     <input type="submit" value="Регистрация">
   </form>
 </div>
+<script>
+    function onblur(event){
+      const request = new XMLHttpRequest();
+      const params = event.target.value.trim();
+      const url = "/accounts/email/"+params+"/";
+
+      request.open('GET', url);
+      request.setRequestHeader('Content-Type', 'application/x-www-form-url');
+      request.addEventListener("readystatechange", () => {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log(request.responseText);
+          var email_message = document.getElementById('message');
+          var email_p = document.getElementById('input2');
+          var pass_p = document.getElementById('input3');
+          if(request.responseText == 'True'){
+            email_message.innerHTML = "email свободен";
+            email_message.style.color = "green";
+            email_message.style.fontSize = "10pt";
+            email_p.style.marginBottom = "0px";
+            pass_p.style.marginTop = "0px";
+          } else {
+            email_message.innerHTML = "email занят";
+            email_message.style.color = "red";
+            email_message.style.fontSize = "10pt";
+            email_p.style.marginBottom = "0px";
+            pass_p.style.marginTop = "0px";
+          }
+        }
+      });
+      
+      request.send();
+      }
+      var email = document.forms[0]['email'];
+      email.addEventListener('blur', onblur);
+  </script>
 {% endblock %}
